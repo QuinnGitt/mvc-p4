@@ -8,5 +8,21 @@
     <link rel="stylesheet" href="<?= URLROOT; ?>/css/style.css"></head>
 <body>
     <?= $data['title']; ?>
+
+    <table>
+        <thead>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Mobiel</th>
+            <th>Datum in dienst</th>
+            <th>Aantal Sterren</th>
+            <th>Voertuigen</th>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </body>
 </html>
