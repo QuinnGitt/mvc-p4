@@ -13,3 +13,18 @@ table,
      border-collapse: collapse;
      margin-top: 2em;
  }
+
+ h2 {
+    display: flex;
+    justify-content: center;
+ }
+
+ .bi, .bi-car-front {
+    display: flex;
+    justify-content: center;
+    color: black;
+ }
+
+ a {
+    text-decoration: none;
+ }
