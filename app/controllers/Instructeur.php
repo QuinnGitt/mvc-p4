@@ -58,7 +58,7 @@ class Instructeur extends BaseController
          */
         $infoInstructeur = $this->instructeurModel->getGegevensInstructeur();
 
-        var_dump($infoInstructeur);
+        // var_dump($infoInstructeur);
         // $aantalSterren = sizeof($);
 
         /**
