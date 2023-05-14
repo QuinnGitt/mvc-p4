@@ -50,4 +50,12 @@ class Instructeur extends BaseController
 
         $this->view('Instructeur/index', $data);
     }
+
+    public function gebruikteVoertuigen($instructeurId)
+    {
+        $data = [
+            'title' => 'Door instructeur gebruikte voertuigen'
+        ];
+        $this->view('Instructeur/gebruikteVoertuigen', $data);
+    }
 }

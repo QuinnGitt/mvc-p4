@@ -19,4 +19,9 @@ class InstructeurModel
         
         return $this->db->resultSet();
     }
+
+    public function gegevensInstructeur()
+    {
+
+    }
 }
