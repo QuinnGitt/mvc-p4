@@ -53,8 +53,51 @@ class Instructeur extends BaseController
 
     public function gebruikteVoertuigen($instructeurId)
     {
+        /**
+         * Haal de info van de instructeur op uit de database (model)
+         */
+        $infoInstructeur = $this->instructeurModel->getGegevensInstructeur();
+
+        var_dump($infoInstructeur);
+        // $aantalSterren = sizeof($);
+
+        /**
+         * Maak de rows voor de tbody in de view
+         */
+        $tableRows = '';
+
+        foreach ($infoInstructeur as $info) {
+            $tableRows .=  "<tr>
+                                <td>$info->typeVoertuig</td>
+                                <td>$info->Type</td>
+                                <td>$info->Kenteken</td>
+                                <td>$info->Bouwjaar</td>
+                                <td>$info->Brandstof</td>
+                                <td>$info->RijbewijsCategorie</td>
+                            </tr>";
+        }
+
+        $naamDatumSterren = $this->instructeurModel->getInstructeurs();
+
+        $nds = '';
+
+        foreach ($naamDatumSterren as $naam) {
+            $datum = date_create($naam->DatumInDienst);
+            $datum = date_format($datum, 'd-m-Y'); 
+            $aantalSterren = $naam->AantalSterren;
+            $voor = $naam->Voornaam;
+            $tussen = $naam->Tussenvoegsel;
+            $achter = $naam->Achternaam;
+        }
+
         $data = [
-            'title' => 'Door instructeur gebruikte voertuigen'
+            'title' => 'Door instructeur gebruikte voertuigen',
+            'tableRows' => $tableRows,
+            'datum' => $datum,
+            'aantalSterren' => $aantalSterren,
+            'voor' => $voor,
+            'tussen' => $tussen, 
+            'achter' => $achter
         ];
         $this->view('Instructeur/gebruikteVoertuigen', $data);
     }

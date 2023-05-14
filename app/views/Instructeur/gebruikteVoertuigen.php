@@ -11,6 +11,10 @@
 
 <body>
     <h3><?= $data['title']; ?></h3>
+    <h4>Naam: <?= $data ['voor'], ' ', $data ['tussen'], '', $data ['achter']; ?></h4>
+    <h4>Datum in dienst: <?= $data ['datum']; ?></h4>
+    <h4>Aantal Sterren: <?= $data ['aantalSterren']; ?></h4>
+
     <table>
         <thead>
             <th>Type Voertuig</th>
@@ -21,7 +25,7 @@
             <th>Rijbewijs Categorie</th>
         </thead>
         <tbody>
-            <!-- <?= $data['tableRows']; ?> -->
+            <?= $data['tableRows']; ?>
         </tbody>
     </table>
 </body>
