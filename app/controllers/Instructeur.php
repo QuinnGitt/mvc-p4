@@ -77,27 +77,27 @@ class Instructeur extends BaseController
                             </tr>";
         }
 
-        $naamDatumSterren = $this->instructeurModel->getInstructeurs();
+        $naamDatumSterren = $this->instructeurModel->getLizhan();
 
         $nds = '';
 
         foreach ($naamDatumSterren as $naam) {
             $datum = date_create($naam->DatumInDienst);
             $datum = date_format($datum, 'd-m-Y'); 
-            $aantalSterren = $naam->AantalSterren;
-            $voor = $naam->Voornaam;
-            $tussen = $naam->Tussenvoegsel;
-            $achter = $naam->Achternaam;
+            $aantalSterren =    $naam->AantalSterren;
+            $voor =             $naam->Voornaam;
+            $tussen =           $naam->Tussenvoegsel;
+            $achter =           $naam->Achternaam;
         }
 
         $data = [
-            'title' => 'Door instructeur gebruikte voertuigen',
-            'tableRows' => $tableRows,
-            'datum' => $datum,
+            'title'         => 'Door instructeur gebruikte voertuigen',
+            'tableRows'     => $tableRows,
+            'datum'         => $datum,
             'aantalSterren' => $aantalSterren,
-            'voor' => $voor,
-            'tussen' => $tussen, 
-            'achter' => $achter
+            'voor'          => $voor,
+            'tussen'        => $tussen, 
+            'achter'        => $achter
         ];
         $this->view('Instructeur/gebruikteVoertuigen', $data);
     }
