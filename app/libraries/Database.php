@@ -26,8 +26,7 @@ class Database
     {
         $this->statement = $this->dbHandler->prepare($sql);
     }
-
-    public function execute()
+     public function execute()
     {
         return $this->statement->execute();
     }

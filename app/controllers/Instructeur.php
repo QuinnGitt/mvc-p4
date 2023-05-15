@@ -33,7 +33,7 @@ class Instructeur extends BaseController
                                 <td>$datum</td>
                                 <td>$instructeur->AantalSterren</td>
                                 <td>
-                                    <a href='". URLROOT . "/Instructeur/gebruikteVoertuigen/$instructeur->Id'>
+                                    <a href='". URLROOT . "/Instructeur/gebruikteVoertuigen/?id=$instructeur->Id'>
                                     <i class='bi bi-car-front'></i>
                                 </td>
                             </tr>";
@@ -51,12 +51,17 @@ class Instructeur extends BaseController
         $this->view('Instructeur/index', $data);
     }
 
-    public function gebruikteVoertuigen($instructeurId)
+    public function gebruikteVoertuigen()
     {
         /**
          * Haal de info van de instructeur op uit de database (model)
          */
-        $infoInstructeur = $this->instructeurModel->getGegevensInstructeur();
+
+         if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $infoInstructeur = $this->instructeurModel->getGegevensInstructeur($id);
+         }
+        
 
         // var_dump($infoInstructeur);
         // $aantalSterren = sizeof($);
@@ -67,11 +72,13 @@ class Instructeur extends BaseController
         $tableRows = '';
 
         foreach ($infoInstructeur as $info) {
+            $datum = date_create($info->Bouwjaar);
+            $datum = date_format($datum, 'd-m-Y'); 
             $tableRows .=  "<tr>
                                 <td>$info->typeVoertuig</td>
                                 <td>$info->Type</td>
                                 <td>$info->Kenteken</td>
-                                <td>$info->Bouwjaar</td>
+                                <td>$datum</td>
                                 <td>$info->Brandstof</td>
                                 <td>$info->RijbewijsCategorie</td>
                             </tr>";
