@@ -20,27 +20,50 @@ class InstructeurModel
         return $this->db->resultSet();
     }
 
-    public function getGegevensInstructeur()
+    public function getInstructeurInfoById($instructeurId)
     {
-        $sql = "SELECT ty.typeVoertuig, vo.Type, vo.Kenteken, vo.Bouwjaar, vo.Brandstof, ty.RijbewijsCategorie
-                from instructeur ins
-                left join voertuiginstructeur voins
-                on ins.Id = voins.Id
-                left join voertuig vo
-                on vo.Id = ins.Id
-                left join typevoertuig ty
-                on ty.Id = vo.typevoertuigId
-                where ins.Id = 1";
-        
+
+        $sql = "SELECT  ins.Voornaam,
+                        ins.Tussenvoegsel,
+                        ins.Achternaam,
+                        ins.DatumInDienst,
+                        ins.AantalSterren
+                from instructeur as ins
+                where Id = $instructeurId";
+        // echo $sql;exit();
         $this->db->query($sql);
         
-        return $this->db->resultSet();
+        return $this->db->single();
     }
 
     public function getLizhan(){
         $sql = "SELECT * 
         FROM instructeur
         where Id = 1";
+
+        $this->db->query($sql);
+
+        return $this->db->single();
+    }
+    public function getAssignedVehiclesToInstructor($instructeurId)
+    {
+        $sql = "SELECT  tyvo.TypeVoertuig,
+                        vo.Type,
+                        vo.Kenteken,
+                        vo.Bouwjaar,
+                        vo.Brandstof,
+                        tyvo.RijbewijsCategorie
+                
+                FROM VoertuigInstructeur as vi
+
+                INNER JOIN voertuig as vo
+                ON         vo.Id = vi.VoertuigId
+
+                INNER JOIN TypeVoertuig as tyvo
+                ON         tyvo.Id = vo.typeVoertuigId
+                
+                WHERE vi.InstructeurId = $instructeurId
+                ORDER BY tyvo.RijbewijsCategorie ASC";
 
         $this->db->query($sql);
 
