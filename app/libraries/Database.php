@@ -36,4 +36,10 @@ class Database
         $this->execute();
         return $this->statement->fetchALL(PDO::FETCH_OBJ);
     }
+
+    public function single()
+    {
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_OBJ);
+    }
 }
